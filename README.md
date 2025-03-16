@@ -1,6 +1,6 @@
-**Playwright Readme to run this project
+**Playwright Readme to run this project**
 
-How to Integrate the GitHub Actions**
+**How to Integrate the GitHub Actions**
 1. Create a github Repo
 2. Push your all code into it
 3. Now create a folder .github/workflows
@@ -14,7 +14,8 @@ How to Integrate the GitHub Actions**
 3. Push it in the repo
 4. Under "Actions" you will the github action is running all the tests
 
-**How to integrate it with jenkins **
+**How to integrate it with jenkins**
+
 Before Steps
 1. Under Manage Jenkins -> Tools -> Add local git.exe path, Add Nodejs path 
 2. Under Manage Jenkins -> Plugins -> Install "NodeJs" plugin
@@ -28,4 +29,4 @@ Now Configuring Job
 
 **How to run the tests on Docket Image in Local**
 
-****How to run it directly on Docker Server**
+**How to run it directly on Docker Server**
