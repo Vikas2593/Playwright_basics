@@ -7,7 +7,8 @@ on:
 jobs:
   test:
     strategy:
-        max-parallel: 1
+        fail-fast: false #in this case if one job fails other won't get fail by default it is set to Pass
+        max-parallel: 1 #it provide details how many parallel thread we want to run
         matrix:
           os: [ ubuntu-latest, windows-latest, macos-latest ]
     timeout-minutes: 60
@@ -30,7 +31,9 @@ jobs:
       env: 
         JOB_CONTEXT: ${{ toJson(job) }}
       run: echo "$JOB_CONTEXT"
-      
+
+    - name: Upload the artifact only for Ubuntu-latest
+      if: matrix.os == "ubuntu-latest"
     - uses: actions/upload-artifact@v4
       with:
         name: playwright-report
