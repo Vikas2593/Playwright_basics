@@ -1,0 +1,38 @@
+name: Playwright Tests Integration with Gmail
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: 30 5 * * 1-5
+jobs:
+  test:
+    strategy:
+        max-parallel: 1
+        matrix:
+          os: [ ubuntu-latest, windows-latest, macos-latest ]
+    timeout-minutes: 60
+    runs-on: ${{matrix.os}}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+      
+    - name: Run Playwright tests
+      run: npx playwright test
+
+    - name: Job Dump
+      env: 
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+      
+    - uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
