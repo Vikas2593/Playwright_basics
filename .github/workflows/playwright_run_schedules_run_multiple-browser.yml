@@ -33,7 +33,7 @@ jobs:
       run: echo "$JOB_CONTEXT"
 
     - name: Upload the artifact only for Ubuntu-latest
-      if: matrix.os == "ubuntu-latest"
+      if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
       with:
         name: playwright-report
